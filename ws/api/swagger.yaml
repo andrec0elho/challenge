@@ -1,0 +1,142 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Hostelworld
+host: 'localhost:8089'
+basePath: /
+schemes:
+  - http
+securityDefinitions:
+  basicAuth:
+    type: basic
+paths:
+  '/currency':
+    get:
+      tags:
+        - hostelworld
+      summary: 'Retrieve world currency codes and descriptions'
+      description: ''
+      operationId: getCurrency
+      produces:
+        - application/json
+      responses:
+        '200': 
+          description: OK
+          schema:
+            $ref: '#/definitions/currency_response'
+        '204':
+          description: No Content
+        '500':
+          description: Internal Server Error
+      x-swagger-router-controller: stocks
+  '/stock_history':
+    get:
+      tags:
+        - hostelworld
+      summary: 'Retrieve stock history information 5 companies'
+      description: ''
+      operationId: getStockHistory
+      parameters:
+        - name: date
+          in: query
+          required: true
+          type: string
+        - name: currency
+          in: query
+          required: true
+          type: string
+        - name: symbol
+          in: query
+          required: false
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200': 
+          description: OK
+          schema:
+            $ref: '#/definitions/historic_response'
+        '204':
+          description: No Content
+        '500':
+          description: Internal Server Error
+      x-swagger-router-controller: stocks
+  '/stock/latest':
+    get:
+      tags:
+        - hostelworld
+      summary: 'Retrieve latest stock information in USD'
+      description: ''
+      operationId: getStock
+      parameters:
+        - name: symbol
+          in: query
+          required: false
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200': 
+          description: OK
+          schema:
+            $ref: '#/definitions/stock_response'
+        '204':
+          description: No Content
+        '500':
+          description: Internal Server Error
+      x-swagger-router-controller: stocks
+definitions:
+  currency_response:
+    type: array
+    items:
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+  historic_response:
+    type: array
+    items:
+      properties:
+        symbol:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+        price:
+          type: string
+        stock_exchange_long:
+          type: string
+        stock_exchange_short:
+          type: string  
+        openConvert:
+          type: number
+        closeConvert:
+          type: number  
+        historic:
+          type: object
+          properties:
+            open:
+              type: string
+            close:
+              type: string
+            high:
+              type: string
+            low:
+              type: string
+            volume:
+              type: string
+  stock_response:        
+    type: array
+    items:
+      properties:
+        symbol:
+          type: string
+        name:
+          type: string      
+        currency:
+          type: string
+        price:
+          type: string
+          
