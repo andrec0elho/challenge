@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+.nopadding {
+    padding: 0;
+    margin: 0;
+}
+
+.height100 {
+    height: 100%;
+}
+
+.height50 {
+    height: 50%;
+}
+
+body {
+    color: white;
+}
+
+.container100 {
+    width: 100%;
+    height: 100%;
+}
+
+.basePadding {
+    padding: 0 3rem;
+}

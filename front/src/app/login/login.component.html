@@ -1,0 +1,40 @@
+<div class="container100">
+  <div class="row nopadding height100">
+    <div class="col-8 nopadding height100 colDisplay">
+      <div class="verticalAlign height100">
+        <div class="backgroundLogo height50"></div>
+
+        <div class="row nopadding height50">
+          <div class="col-6 nopadding height100 center">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+              <div class="form-group" >
+                <label for="userId" class="col-md-3 col-sm-5 col-12 nopadding label">User id</label>
+                <div class="col-12 nopadding">
+                  <input type="text" class="form-control" formControlName="userId" placeholder="Email" />
+                  <div *ngIf="f.userId.errors">
+                    <div *ngIf="errorMessages.requiredUser" class="errorMessage">{{errorMessages.requiredUser}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" >
+                <label for="password" class="col-md-3 col-sm-5 col-12 nopadding label">Password</label>
+                <div class="col-12 nopadding">
+                  <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+                  <div *ngIf="f.password.errors">
+                    <div *ngIf="errorMessages.requiredPassword" class="errorMessage">{{errorMessages.requiredPassword}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 nopadding errorMessage bottomMargin" *ngIf="errorMessages.userPassNoMatch">
+                {{errorMessages.userPassNoMatch}}
+              </div>
+              <div class="col-12 form-group text-right nopadding">
+                <button class="btn btn-success" type="submit">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
